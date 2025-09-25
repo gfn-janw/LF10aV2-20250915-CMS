@@ -13,12 +13,19 @@ var_dump($_GET);
 $navigation = [
     'main' => 'Startseite',
     'seite_1' => 'Seite 1',
+    'seite_2' => 'Seite 2'
 ];
 
-$filename = 'content/main.html';
+$page = 'main';
 
 if(isset($_GET['page'])) {
-    $filename = 'content/' . $_GET['page'] . '.html';
+    $page = $_GET['page'];
+}
+
+if(array_key_exists($page, $navigation)) {
+    $filename = 'content/' . $page . '.html';
+} else {
+    $filename = 'content/404.html';
 }
 ?>
 <!DOCTYPE html>
@@ -31,7 +38,11 @@ if(isset($_GET['page'])) {
     <header>Beispiel
         <nav>
             <?php foreach ($navigation as $file => $label) { ?>
-                    <a href="?page=<?php echo $file; ?>"><?php echo $label; ?></a>
+                    <?php if($file == $page) { ?>
+                        <a style="background: red" href="?page=<?php echo $file; ?>"><?php echo $label; ?></a>
+                    <?php } else { ?>
+                        <a href="?page=<?php echo $file; ?>"><?php echo $label; ?></a>
+                    <?php } ?>
             <?php } ?>
         </nav>
     </header>
