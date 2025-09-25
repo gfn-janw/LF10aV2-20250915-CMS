@@ -1,8 +1,17 @@
 <?php
+/*
+ * Aufgabe 1: Baue eine zweite Unterseite "Seite 2" ein.
+ *
+ * Aufgabe 2: Gebe eine Seite mit dem Inhalt "Seite nicht gefunden" aus,
+ * wenn eine nicht existierende Unterseite aufgerufen wird.
+ *
+ * Aufgabe 3: Hebe die aktuelle Unterseite in der Navigation farblich hervor.
+ */
+
 var_dump($_GET);
 
 $navigation = [
-        'main' => 'Startseite',
+    'main' => 'Startseite',
     'seite_1' => 'Seite 1',
 ];
 
