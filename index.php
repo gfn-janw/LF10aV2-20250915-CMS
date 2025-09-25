@@ -1,5 +1,16 @@
 <?php
 var_dump($_GET);
+
+$navigation = [
+        'main' => 'Startseite',
+    'seite_1' => 'Seite 1',
+];
+
+$filename = 'content/main.html';
+
+if(isset($_GET['page'])) {
+    $filename = 'content/' . $_GET['page'] . '.html';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,13 +21,13 @@ var_dump($_GET);
 <body>
     <header>Beispiel
         <nav>
-            <a href="?page=main">Startseite</a>
-            <a href="?page=seite_1">Seite 1</a>
-            <a href="#">Seite 2</a>
+            <?php foreach ($navigation as $file => $label) { ?>
+                    <a href="?page=<?php echo $file; ?>"><?php echo $label; ?></a>
+            <?php } ?>
         </nav>
     </header>
     <main>
-        <?php require 'content/' . $_GET['page'] . '.html'; ?>
+        <?php require $filename; ?>
     </main>
     <footer>Copyright 2025 (C)</footer>
 </body>
